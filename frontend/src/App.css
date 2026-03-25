@@ -5,14 +5,22 @@ body {
   color: white;
 }
 
+/* CONTENEDOR MAPA */
 .map {
   height: 80vh;
   position: relative;
   overflow: hidden;
-  padding: 0px;
+  padding: 0;
 }
 
-/* Temas */
+/* 🔥 CLAVE: contenedor de nodos */
+.path {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* TEMAS */
 
 .theme-espacio {
   background: url("https://images.unsplash.com/photo-1446776811953-b23d57bd21aa");
@@ -26,7 +34,19 @@ body {
   background-position: center;
 }
 
-/* mejorar visibilidad nodos */
+.theme-oceano {
+  background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e");
+  background-size: cover;
+  background-position: center;
+}
+
+.theme-castillo {
+  background: url("https://images.unsplash.com/photo-1505843513577-22bb7d21e455");
+  background-size: cover;
+  background-position: center;
+}
+
+/* NODOS */
 
 .node {
   position: absolute;
@@ -40,21 +60,26 @@ body {
   align-items: center;
   text-align: center;
   cursor: pointer;
-  transition: transform 0.2s;
   backdrop-filter: blur(4px);
+
+  /* 🔥 CLAVE: centra el nodo en su punto */
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s;
 }
 
 .node:hover {
-  transform: scale(1.1);
+  transform: translate(-50%, -50%) scale(1.1);
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Posiciones tipo camino */
+/* POSICIONES (coinciden con SVG) */
 
 .node-0 { top: 60%; left: 10%; }
 .node-1 { top: 40%; left: 30%; }
 .node-2 { top: 50%; left: 55%; }
 .node-3 { top: 30%; left: 75%; }
+
+/* MODAL */
 
 .modal {
   position: fixed;
@@ -74,14 +99,19 @@ body {
   border-radius: 10px;
   max-width: 500px;
 }
-/* líneas del camino */
+
+/* 🔥 SVG LÍNEAS (FIX DEFINITIVO) */
 
 .lines {
   position: absolute;
+  top: 0;
+  left: 0; /* 🔥 MUY IMPORTANTE */
   width: 100%;
   height: 100%;
   pointer-events: none;
 }
+
+/* líneas estilo */
 
 .lines line {
   stroke: white;
@@ -95,45 +125,35 @@ body {
     stroke-dashoffset: -20;
   }
 }
+
+/* estados */
+
 .locked {
   opacity: 0.4;
   pointer-events: none;
 }
-.theme-oceano {
-  background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e");
-  background-size: cover;
-  background-position: center;
-}
 
-.theme-castillo {
-  background: url("https://images.unsplash.com/photo-1505843513577-22bb7d21e455");
-  background-size: cover;
-  background-position: center;
-}
-/* contenedor general */
+/* APP GENERAL */
+
 .app {
   text-align: center;
 }
 
-/* quitar márgenes del body */
-body {
-  margin: 0;
-}
+/* BANNER */
 
-/* banner contenedor */
 .banner {
   width: 100%;
-  background: black; /* opcional si hay espacios */
+  background: black;
 }
 
-/* imagen completa sin recorte */
 .banner img {
   width: 100%;
-  height: auto; /* 👈 clave para no cortar */
+  height: auto;
   display: block;
 }
 
-/* formulario */
+/* FORMULARIO */
+
 .form-container {
   margin: 20px auto;
 }
@@ -158,7 +178,8 @@ body {
   background: #2196f3;
 }
 
-/* link */
+/* LINKS */
+
 .link-box {
   margin: 15px auto;
 }
@@ -172,7 +193,8 @@ body {
 .link-box button {
   padding: 8px;
 }
-/* quiz */
+
+/* QUIZ */
 
 .modal-content button {
   background: #444;
