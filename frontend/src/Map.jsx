@@ -26,10 +26,15 @@ export default function Map({ mission, onNodeClick }) {
     >
       <h2>{mission.title}</h2>
 
-      <svg className="lines">
-        <line x1="10%" y1="65%" x2="30%" y2="45%" />
-        <line x1="30%" y1="45%" x2="55%" y2="55%" />
-        <line x1="55%" y1="55%" x2="75%" y2="35%" />
+      {/* 🔥 SVG CORREGIDO */}
+      <svg
+        className="lines"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+      >
+        <line x1="10" y1="60" x2="30" y2="40" />
+        <line x1="30" y1="40" x2="55" y2="50" />
+        <line x1="55" y1="50" x2="75" y2="30" />
       </svg>
 
       <div className="path">
