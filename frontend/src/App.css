@@ -110,3 +110,54 @@ body {
   background-size: cover;
   background-position: center;
 }
+/* contenedor general */
+.app {
+  text-align: center;
+}
+
+/* banner */
+.banner img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+}
+
+/* formulario */
+.form-container {
+  margin: 20px auto;
+}
+
+.form-container input {
+  margin: 5px;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+}
+
+.form-container button {
+  padding: 10px 15px;
+  background: #4cafef;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.form-container button:hover {
+  background: #2196f3;
+}
+
+/* link */
+.link-box {
+  margin: 15px auto;
+}
+
+.link-box input {
+  width: 60%;
+  padding: 8px;
+  margin-right: 10px;
+}
+
+.link-box button {
+  padding: 8px;
+}

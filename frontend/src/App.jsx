@@ -31,40 +31,37 @@ export default function App() {
   };
 
   return (
-    <div>
-      <h1 style={{ textAlign: "center" }}>ClassQuest AI</h1>
+    <div className="app">
+      {/* 🔥 BANNER */}
+      <div className="banner">
+        <img src="/banner.png" alt="banner" />
+      </div>
 
-      <div style={{ textAlign: "center" }}>
-        <input
-          placeholder="Curso"
-          onChange={(e) => setCurso(e.target.value)}
-        />
-        <input
-          placeholder="Asignatura"
-          onChange={(e) => setAsignatura(e.target.value)}
-        />
-        <input
-          placeholder="Contenido"
-          onChange={(e) => setContenido(e.target.value)}
-        />
+      {/* FORM */}
+      <div className="form-container">
+        <input placeholder="Curso" onChange={(e) => setCurso(e.target.value)} />
+        <input placeholder="Asignatura" onChange={(e) => setAsignatura(e.target.value)} />
+        <input placeholder="Contenido" onChange={(e) => setContenido(e.target.value)} />
         <button onClick={generar}>Generar misión</button>
       </div>
 
-      {/* LINK COPIABLE */}
+      {/* LINK */}
       {link && (
-        <div style={{ textAlign: "center", marginTop: 20 }}>
+        <div className="link-box">
           <p>Link para alumnos:</p>
-          <input value={link} readOnly style={{ width: "60%" }} />
+          <input value={link} readOnly />
           <button onClick={() => navigator.clipboard.writeText(link)}>
             Copiar
           </button>
         </div>
       )}
 
+      {/* MAPA */}
       {mission && (
         <Map mission={mission} onNodeClick={setSelectedNode} />
       )}
 
+      {/* MODAL */}
       {selectedNode && (
         <Modal
           node={selectedNode.node}
