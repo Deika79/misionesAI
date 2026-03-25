@@ -115,11 +115,22 @@ body {
   text-align: center;
 }
 
-/* banner */
+/* quitar márgenes del body */
+body {
+  margin: 0;
+}
+
+/* banner contenedor */
+.banner {
+  width: 100%;
+  background: black; /* opcional si hay espacios */
+}
+
+/* imagen completa sin recorte */
 .banner img {
   width: 100%;
-  max-height: 180px;
-  object-fit: cover;
+  height: auto; /* 👈 clave para no cortar */
+  display: block;
 }
 
 /* formulario */
