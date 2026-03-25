@@ -11,13 +11,16 @@ export default function App() {
   const [link, setLink] = useState("");
 
   const generar = async () => {
-    const res = await fetch("http://localhost:3001/api/generate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ curso, asignatura, contenido }),
-    });
+    const res = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/generate`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ curso, asignatura, contenido }),
+      }
+    );
 
     const data = await res.json();
 
@@ -32,9 +35,18 @@ export default function App() {
       <h1 style={{ textAlign: "center" }}>ClassQuest AI</h1>
 
       <div style={{ textAlign: "center" }}>
-        <input placeholder="Curso" onChange={(e) => setCurso(e.target.value)} />
-        <input placeholder="Asignatura" onChange={(e) => setAsignatura(e.target.value)} />
-        <input placeholder="Contenido" onChange={(e) => setContenido(e.target.value)} />
+        <input
+          placeholder="Curso"
+          onChange={(e) => setCurso(e.target.value)}
+        />
+        <input
+          placeholder="Asignatura"
+          onChange={(e) => setAsignatura(e.target.value)}
+        />
+        <input
+          placeholder="Contenido"
+          onChange={(e) => setContenido(e.target.value)}
+        />
         <button onClick={generar}>Generar misión</button>
       </div>
 

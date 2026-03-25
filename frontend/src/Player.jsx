@@ -7,7 +7,7 @@ export default function Player() {
   useEffect(() => {
     const id = window.location.pathname.split("/play/")[1];
 
-    fetch(`http://localhost:3001/api/mission/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/mission/${id}`)
       .then((res) => res.json())
       .then(setMission);
   }, []);

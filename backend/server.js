@@ -16,14 +16,16 @@ await connectDB();
 
 // 🔥 rutas
 app.use("/api/generate", generateRoute);
-app.use("/api/mission", missionRoute); // 👈 CORREGIDO (singular)
+app.use("/api/mission", missionRoute);
 
 // test
 app.get("/", (req, res) => {
   res.send("Backend funcionando 🚀");
 });
 
-const PORT = 3001;
+// 🔥 CAMBIO IMPORTANTE PARA RENDER
+const PORT = process.env.PORT || 3001;
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
