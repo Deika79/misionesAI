@@ -10,8 +10,9 @@ router.post("/", async (req, res) => {
 
     const mission = await generateMission(curso, asignatura, contenido);
 
-    // 🔥 generar imagen IA
     const image = await generateImage(mission.theme, contenido);
+
+    console.log("IMAGE GENERADA:", image?.slice(0, 50)); // 👈 DEBUG
 
     const fullMission = {
       ...mission,

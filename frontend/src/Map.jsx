@@ -1,34 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Node from "./Node";
-
-function getTheme(theme) {
-  if (!theme) return "jungla";
-
-  const t = theme.toLowerCase();
-
-  if (t.includes("espacio") || t.includes("space") || t.includes("planeta"))
-    return "espacio";
-
-  if (
-    t.includes("animal") ||
-    t.includes("mamífero") ||
-    t.includes("jungla") ||
-    t.includes("selva")
-  )
-    return "jungla";
-
-  if (t.includes("mar") || t.includes("océano"))
-    return "oceano";
-
-  if (t.includes("historia") || t.includes("edad media"))
-    return "castillo";
-
-  return "jungla";
-}
 
 export default function Map({ mission, onNodeClick }) {
   const [currentStep, setCurrentStep] = useState(0);
-  const themeClass = getTheme(mission.theme);
+
+  useEffect(() => {
+    console.log("MISSION COMPLETA:", mission);
+    console.log("IMAGEN:", mission.image);
+  }, [mission]);
 
   const handleClick = (node, index) => {
     if (index <= currentStep) {
@@ -40,11 +19,11 @@ export default function Map({ mission, onNodeClick }) {
     <div
       className="map"
       style={{
-       backgroundImage: `url(${mission.image})`,
-       backgroundSize: "cover",
-       backgroundPosition: "center",
-  }}
->
+        backgroundImage: mission.image ? `url(${mission.image})` : "none",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <h2>{mission.title}</h2>
 
       <svg className="lines">
