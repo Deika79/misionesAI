@@ -27,8 +27,14 @@ export default function Modal({ node, onClose, onComplete }) {
 
         {/* VIDEO */}
         {node.videoUrl && (
-          <iframe width="400" height="250" src={node.videoUrl}></iframe>
-        )}
+          <iframe
+            width="400"
+            height="250"
+            src={node.videoUrl.replace("watch?v=", "embed/")}
+            title="video"
+            allowFullScreen
+          />
+      ) }
 
         {/* QUIZ */}
         {node.quiz && (

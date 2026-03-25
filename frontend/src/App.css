@@ -9,7 +9,7 @@ body {
   height: 80vh;
   position: relative;
   overflow: hidden;
-  padding: 20px;
+  padding: 0px;
 }
 
 /* Temas */
@@ -171,4 +171,19 @@ body {
 
 .link-box button {
   padding: 8px;
+}
+/* quiz */
+
+.modal-content button {
+  background: #444;
+  color: white;
+  border: 1px solid #888;
+  padding: 8px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background: #666;
 }
