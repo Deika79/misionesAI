@@ -15,29 +15,7 @@ export default function Modal({ node, onClose, onComplete }) {
     }
   };
 
-  // 🔥 FUNCIÓN CLAVE PARA ARREGLAR LOS VÍDEOS
-  const getEmbedUrl = (url) => {
-    if (!url) return "";
-
-    // YouTube normal
-    if (url.includes("watch?v=")) {
-      return url.replace("watch?v=", "embed/");
-    }
-
-    // YouTube corto
-    if (url.includes("youtu.be/")) {
-      const id = url.split("youtu.be/")[1];
-      return `https://www.youtube.com/embed/${id}`;
-    }
-
-    // Ya es embed
-    if (url.includes("embed")) {
-      return url;
-    }
-
-    // fallback (por si metes otra fuente)
-    return url;
-  };
+  console.log("NODE:", node);
 
   return (
     <div className="modal">
@@ -47,25 +25,47 @@ export default function Modal({ node, onClose, onComplete }) {
         <h2>{node.title}</h2>
 
         {/* INFO */}
-        {node.content && <p>{node.content}</p>}
+        {node.type === "info" && <p>{node.content}</p>}
 
-        {/* 🎬 VIDEO CORREGIDO */}
-        {node.videoUrl && (
+        {/* 🎬 VIDEO (FIX REAL) */}
+        {node.type === "video" && node.videoUrl && (
           <div style={{ margin: "15px 0" }}>
-            <iframe
-              width="100%"
-              height="250"
-              src={getEmbedUrl(node.videoUrl)}
-              title="video"
-              style={{ borderRadius: "8px" }}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
+            <div
+              style={{
+                position: "relative",
+                paddingBottom: "56.25%", // 16:9
+                height: 0,
+                overflow: "hidden",
+                borderRadius: "10px",
+              }}
+            >
+              <iframe
+                src={node.videoUrl}
+                title="YouTube video"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                }}
+              />
+            </div>
           </div>
         )}
 
+        {/* SIN VIDEO */}
+        {node.type === "video" && !node.videoUrl && (
+          <p style={{ color: "#888" }}>
+            ⚠️ No se ha generado vídeo
+          </p>
+        )}
+
         {/* QUIZ */}
-        {node.quiz && (
+        {node.type === "quiz" && node.quiz && (
           <div>
             <h3>{node.quiz[0].question}</h3>
 
@@ -95,8 +95,11 @@ export default function Modal({ node, onClose, onComplete }) {
           </div>
         )}
 
+        {/* RETO */}
+        {node.type === "reto" && <p>{node.content}</p>}
+
         {/* COMPLETAR */}
-        {(!node.quiz || correct) && (
+        {(node.type !== "quiz" || correct) && (
           <button onClick={onComplete}>
             Completar misión ✅
           </button>
